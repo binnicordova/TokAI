@@ -1,5 +1,22 @@
 ![Expo React Native Boilerplate](./resources/TokAI.png)
 
+> 🔊 **Turning TikTok Comments into Voice with AI** 🔊  
+>
+> **TokAI** lets creators hear their TikTok Live audience in real time—right from their iPhone or Android.  
+> - Transforms live chat comments into natural AI voices, so you never miss a word.  
+> - Runs directly on your device—no extra setup or hardware.  
+> - Built with React Native and advanced AI speech tech for lifelike voices.  
+> - Designed to boost connection and engagement during live streams.  
+>
+> Live content is about conversation and connection—TokAI makes every comment count.  
+>
+> This is just the beginning for TokAI 🚀  
+>
+> _Would you try TokAI on your next TikTok Live?_  
+>
+> #TokAI #AI #ReactNative #MobileApps #TikTokLive
+
+
 # TokAI App
 
 created by Binni Cordova
