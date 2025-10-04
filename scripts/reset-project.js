@@ -30,7 +30,7 @@ const newAppPath = path.join(root, newAppDir);
 
 console.log(`
 🎸 Hi, I'm Binni Cordova, a rockstar developer with over 7 years of experience working with ReactNative Apps!.
-Feel free to use my incredible Expo Boilerplate and contact me to support your ideas or projects.
+Feel free to use my incredible TokAI and contact me to support your ideas or projects.
 Let me help you reset this project to a clean state, with a minimal setup, so:
 `);
 
@@ -233,7 +233,7 @@ or
 \`pnpm start\`
 
 to begin your fresh project with this minimal setup.
-Enjoy building with my Expo Boilerplate! 🎉
+Enjoy building with my TokAI! 🎉
 `);
     } catch (err) {
         console.error(`❌  Error: ${err.message}`);

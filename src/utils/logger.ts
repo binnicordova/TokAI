@@ -4,8 +4,8 @@ export const logger = {
     info: (message: string, data?: unknown) => {
         console.info(TAG, "[INFO]", message, data);
     },
-    debug: (message: string, data?: unknown) => {
-        console.debug(TAG, "[DEBUG] 🔍🔍🔍", message, data);
+    debug: (TAGGER: string, message: string, data?: unknown) => {
+        console.debug(TAG, TAGGER, "[DEBUG] 🔍🔍🔍", message, data);
     },
     error: (message: string, error?: any) => {
         // Avoid using `instanceof Error` because in some JS runtimes or when shims

@@ -2,27 +2,27 @@ import "dotenv/config";
 import type {ExpoConfig} from "@expo/config-types";
 
 const EAS_OWNER = process.env.EAS_OWNER; // by https://www.binnicordova.com
-const EAS_SLUG = "expo-boilerplate";
+const EAS_SLUG = "tokai";
 const EAS_PROJECT_ID = process.env.EAS_PROJECT_ID;
 
-const VERSION = "0.0.3";
-const VERSION_CODE = 3;
+const VERSION = "0.0.1";
+const VERSION_CODE = 1;
 
 const APP_VARIANTS = {
     development: {
-        identifier: "com.boilerplate.dev",
-        name: "Expo Boilerplate (Dev)",
-        scheme: "dev.boilerplate.com",
+        identifier: "com.tokai.dev",
+        name: "TokAI (Dev)",
+        scheme: "dev.tokai.com",
     },
     preview: {
-        identifier: "com.boilerplate.preview",
-        name: "Expo Boilerplate (Preview)",
-        scheme: "preview.boilerplate.com",
+        identifier: "com.tokai.preview",
+        name: "TokAI (Preview)",
+        scheme: "preview.tokai.com",
     },
     production: {
-        identifier: "com.boilerplate",
-        name: "Expo Boilerplate",
-        scheme: "boilerplate.com",
+        identifier: "com.tokai",
+        name: "TokAI",
+        scheme: "tokai.com",
     },
 };
 
@@ -95,15 +95,6 @@ export default ({config}: {config: ExpoConfig}): ExpoConfig => ({
                 root: "src/app",
             },
         ],
-        [
-            "expo-notifications",
-            {
-                icon: "./assets/images/notification_icon.png",
-                color: "#ffffff",
-                defaultChannel: "default",
-                sounds: ["./assets/sounds/notification_sound.wav"],
-                enableBackgroundRemoteNotifications: true,
-            },
-        ],
+        "expo-background-task",
     ],
 });
