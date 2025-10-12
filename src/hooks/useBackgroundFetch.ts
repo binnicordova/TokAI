@@ -9,5 +9,5 @@ const TASK_CONFIGURATION = { minimumInterval: TASK_INTERVAL };
 TaskManager.defineTask(TASK_NAME, localNotificationTask);
 
 export const initBackgroundFetch = async () => {
-    await BackgroundTask.registerTaskAsync(TASK_NAME, TASK_CONFIGURATION);
+    // await BackgroundTask.registerTaskAsync(TASK_NAME, TASK_CONFIGURATION);
 };

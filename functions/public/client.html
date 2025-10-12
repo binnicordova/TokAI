@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Client</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>Socket.IO TikTok Client</h1>
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter TikTok username" autofocus>
+        <button id="join">Join</button>
+        <button id="leave" disabled>Leave</button>
+        <span id="status" style="margin-left:10px;color:gray;">Disconnected</span>
+    </div>
+    <div id="messages" style="margin-top: 10px; padding: 10px;"></div>
+
+    <script>
+        const socket = io();
+        const joinBtn = document.getElementById('join');
+        const leaveBtn = document.getElementById('leave');
+        const usernameInput = document.getElementById('username');
+        const statusSpan = document.getElementById('status');
+        let joined = false;
+
+        function setStatus(text, color = 'gray') {
+            statusSpan.textContent = text;
+            statusSpan.style.color = color;
+        }
+
+        joinBtn.addEventListener('click', () => {
+            const username = usernameInput.value.trim();
+            if (username) {
+                socket.emit('join', { username });
+                addMessage(`✅ Joined room for <b>${username}</b>`);
+                joined = true;
+                joinBtn.disabled = true;
+                leaveBtn.disabled = false;
+                usernameInput.disabled = true;
+                setStatus('Connected', 'green');
+            }
+        });
+
+        leaveBtn.addEventListener('click', () => {
+            const username = usernameInput.value.trim();
+            if (username) {
+                socket.emit('leave', { username });
+                addMessage(`❌ Left room for <b>${username}</b>`);
+                joined = false;
+                joinBtn.disabled = false;
+                leaveBtn.disabled = true;
+                usernameInput.disabled = false;
+                setStatus('Disconnected', 'gray');
+            }
+        });
+
+        socket.on('connect', () => {
+            setStatus('Connected', 'green');
+            addMessage('🟢 Connected to server');
+        });
+
+        socket.on('disconnect', () => {
+            setStatus('Disconnected', 'gray');
+            addMessage('🔴 Disconnected from server');
+            joinBtn.disabled = false;
+            leaveBtn.disabled = true;
+            usernameInput.disabled = false;
+        });
+
+        socket.on('tiktok:event', (data) => {
+            console.log('Received event:', data);
+            let msg = '';
+            const eventName = data.event;
+            const eventData = data.data;
+
+            if (!eventData) {
+                return;
+            }
+
+            const user = eventData.user || 'System';
+            console.log('Event user:', user, eventName);
+
+            switch (eventName) {
+                case 'chat':
+                    msg = `<b>${user}:</b> ${eventData.comment}`;
+                    break;
+                case 'like':
+                    msg = `<b>${user}</b> liked the stream ${eventData.likeCount} times. Total likes: ${eventData.totalLikeCount}.`;
+                    break;
+                case 'gift':
+                    msg = `<b>${user}</b> sent a ${eventData.giftName} (x${eventData.repeatCount}).`;
+                    break;
+                case 'member':
+                    msg = `<b>${user}</b> joined as a member.`;
+                    break;
+                case 'social':
+                    msg = `<b>${user}</b> shared the stream.`;
+                    break;
+                case 'follow':
+                    msg = `<b>${user}</b> followed.`;
+                    break;
+                case 'roomUser':
+                    msg = `<b>${user}</b> joined the room. Viewers: ${eventData.viewerCount}.`;
+                    break;
+                case 'roomUserLeave':
+                    msg = `<b>${user}</b> left the room.`;
+                    break;
+                case 'streamStart':
+                    msg = `🟢 Stream started.`;
+                    break;
+                case 'streamEnd':
+                    msg = `🔴 Stream ended.`;
+                    break;
+                case 'connect':
+                    msg = `🟢 Connected to TikTok LIVE.`;
+                    break;
+                case 'disconnected':
+                    msg = `🔴 Disconnected from TikTok LIVE.`;
+                    break;
+                case 'error':
+                    // This is handled by 'tiktok:error' listener
+                    break;
+                default:
+                    msg = `Received unhandled event: <b>${eventName}</b>`;
+                    break;
+            }
+
+            if (msg) {
+                addMessage(msg);
+            }
+        });
+
+        socket.on('tiktok:error', (data) => {
+            console.error('Received error:', data);
+            addMessage(`<span style='color:red;'>Error:</span> ${data.message}<br><pre style='background:#ffeaea;padding:5px;border-radius:3px;'>${JSON.stringify(data.error, null, 2)}</pre>`);
+        });
+
+        function addMessage(message) {
+            const messagesDiv = document.getElementById('messages');
+            const newMessage = document.createElement('div');
+            newMessage.innerHTML = message;
+            messagesDiv.appendChild(newMessage);
+        }
+    </script>
+</body>
+</html>

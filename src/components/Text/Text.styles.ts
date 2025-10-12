@@ -1,6 +1,7 @@
 import {StyleSheet} from "react-native";
 import {FONT_SIZE, LINE_HEIGHT} from "@/theme/fonts";
 import {OPACITY} from "@/theme/opcacity";
+import { SPACING } from "@/theme/spacing";
 
 export const styles = StyleSheet.create({
     default: {

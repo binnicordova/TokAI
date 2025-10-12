@@ -1,4 +1,12 @@
 {
-    "name": "TokAI",
-    "slug": "TokAI"
+  "name": "TokAI",
+  "slug": "TokAI",
+  "ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "com.tokai",
+    "version": "0.0.1",
+    "infoPlist": {
+      "ITSAppUsesNonExemptEncryption": false
+    }
+  }
 }

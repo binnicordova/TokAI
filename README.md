@@ -16,14 +16,26 @@
 >
 > #TokAI #AI #ReactNative #MobileApps #TikTokLive
 
+## ✨ Features & Preview
+
+<a href="./resources/tokai_clip.mp4" title="Watch a demo of TokAI in action!">
+  <img src="./resources/tokai_clip.gif" alt="Watch a demo of TokAI in action!" style="max-width:100%;">
+</a>
+
+<p align="center">
+  <img src="./resources/tokai_store_1.jpeg" width="200"/>
+  <img src="./resources/tokai_store_2.jpeg" width="200"/>
+  <img src="./resources/tokai_store_3.jpeg" width="200"/>
+</p>
+
 
 # TokAI App
 
 created by Binni Cordova
 [@binnicordova](https://github.com/BinniZenobioCordovaLeandro)
 
-using my incredible Expo Boilerplate  
-[@expo-boilerplate_binnicordova](https://github.com/BinniZenobioCordovaLeandro/expo-boilerplate_binnicordova)
+using my incredible TokAI  
+[@tokai_binnicordova](https://github.com/BinniZenobioCordovaLeandro/tokai_binnicordova)
 
 ---
 
@@ -79,8 +91,8 @@ Pushes to `main` trigger EAS builds.
 Deep linking supported via Expo Router:
 
 ```sh
-npx uri-scheme open boilerplate.com://index --android
-npx uri-scheme open boilerplate.com://index --ios
+npx uri-scheme open tokai.com://index --android
+npx uri-scheme open tokai.com://index --ios
 ```
 
 ## 🏗️ Project Structure
