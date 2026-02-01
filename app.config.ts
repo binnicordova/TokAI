@@ -6,7 +6,7 @@ const EAS_SLUG = "tokai";
 const EAS_PROJECT_ID = process.env.EAS_PROJECT_ID;
 
 const VERSION = "0.0.1";
-const VERSION_CODE = 1;
+const VERSION_CODE = 2;
 
 const APP_VARIANTS = {
     development: {
@@ -48,7 +48,7 @@ export default ({config}: {config: ExpoConfig}): ExpoConfig => ({
     newArchEnabled: true,
     splash: {
         image: "./assets/splash.png",
-        resizeMode: "contain",
+        resizeMode: "cover",
         backgroundColor: "#ffffff",
     },
     updates: {
@@ -60,7 +60,6 @@ export default ({config}: {config: ExpoConfig}): ExpoConfig => ({
     ios: {
         supportsTablet: true,
         bundleIdentifier: getUniqueIdentifier(),
-        version: VERSION,
     },
     android: {
         adaptiveIcon: {
@@ -68,8 +67,6 @@ export default ({config}: {config: ExpoConfig}): ExpoConfig => ({
             backgroundColor: "#FFFFFF",
         },
         package: getUniqueIdentifier(),
-        versionCode: VERSION_CODE,
-        version: VERSION,
     },
     web: {
         favicon: "./assets/favicon.png",
@@ -84,9 +81,7 @@ export default ({config}: {config: ExpoConfig}): ExpoConfig => ({
         },
     },
     owner: EAS_OWNER,
-    runtimeVersion: {
-        policy: "appVersion",
-    },
+    runtimeVersion: `${VERSION}+${VERSION_CODE}`,
     userInterfaceStyle: "automatic",
     plugins: [
         [
